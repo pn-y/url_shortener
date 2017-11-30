@@ -2,18 +2,14 @@ require 'rails_helper'
 
 RSpec.describe LinksController, type: :controller do
   describe 'GET #show' do
-    it 'redirects to the original url' do
+    it 'calls the VisitCreationJob service and redirects to the original url' do
+      ActiveJob::Base.queue_adapter = :test
+
       link = create :link
+      expect(VisitCreationJob).to receive(:perform_later).with(link, '0.0.0.0')
 
       get :show, params: { id: link.short_url }
       expect(response).to redirect_to link.long_url
-    end
-
-    it 'creates link visit' do
-      link = create :link
-      expect { get :show, params: { id: link.short_url } }.to change(Visit, :count).from(0).to(1)
-      expect(Visit.last.link).to eq link
-      expect(Visit.last.ip).to eq '0.0.0.0'
     end
   end
 end

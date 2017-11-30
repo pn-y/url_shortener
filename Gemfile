@@ -13,6 +13,7 @@ gem 'jbuilder'
 gem 'normalize-rails'
 gem 'puma'
 gem 'sass-rails'
+gem 'sidekiq'
 gem 'uglifier'
 gem 'webpacker'
 

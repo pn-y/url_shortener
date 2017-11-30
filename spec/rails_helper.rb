@@ -62,5 +62,10 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 
+  config.after(:each, type: :job) do
+    clear_enqueued_jobs
+    clear_performed_jobs
+  end
+
   config.include FactoryBot::Syntax::Methods
 end
