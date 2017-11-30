@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171130021211) do
+ActiveRecord::Schema.define(version: 20171130123355) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20171130021211) do
     t.string "ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "country"
     t.index ["link_id"], name: "index_visits_on_link_id"
   end
 
