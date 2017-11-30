@@ -1,0 +1,19 @@
+<div [ngSwitch]='inputKind'>
+  <div class='wrapper' *ngSwitchCase="'initial'">
+      <input #longUrl class='url-field' placeholder='Paste URL here' required>
+      <button type='button' (click)='addLink(longUrl.value)'>Shorten</button>
+  </div>
+  <div *ngSwitchCase="'shorten'">
+    <div class='wrapper'>
+      <div class='url-field'>{{shortUrl}}</div>
+      <img class='cross' src='../assets/cross.svg' (click)='clearLink()'/>
+      <button type='button' ngxClipboard [cbContent]="shortUrl">Copy</button>
+    </div>
+    <div class='wrapper'>
+      <div class='original-url'>
+        <a class='original-url' target='_blank' href={{longUrl}}>{{longUrl}}</a>
+        <span>shortening</span>
+      </div>
+    </div>
+  </div>
+</div>
